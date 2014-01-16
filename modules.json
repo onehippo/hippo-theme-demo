@@ -1,0 +1,89 @@
+{
+    "includes": {
+        "external": [],
+        "libraries": {
+            "prefix": "../components",
+            "items": [
+                {
+                    "component": "ExplorerCanvas",
+                    "file": "excanvas.js",
+                    "browser": "IE"
+                },
+                {
+                    "component": "html5shiv",
+                    "file": "dist/html5shiv-printshiv.js",
+                    "browser": "IE <= 8"
+                },
+                {
+                    "component": "respond",
+                    "file": "respond.src.js",
+                    "browser": "IE <= 8"
+                },
+                {
+                    "component": "es5-shim",
+                    "browser": "IE <= 8"
+                },
+                {
+                    "component": "angular-bootstrap",
+                    "file": "ui-bootstrap-tpls.js"
+                },
+                "angular-mocks",
+                {
+                    "component": "bootstrap",
+                    "file": "dist/js/bootstrap.js"
+                },
+                {
+                    "component": "chosen",
+                    "file": ["dist/chosen.jquery.js"]
+                },
+                {
+                    "component": "underscore",
+                    "file": ["underscore.js"]
+                },
+                {
+                  "component": "flot",
+                  "file": [
+                    "jquery.flot.js",
+                    "jquery.flot.pie.js"
+                  ]
+                }
+            ]
+        },
+
+        "hippo-plugins": {
+            "items": [
+                {
+                    "component": "../components/hippo-plugins",
+                    "file": [
+                        "dist/js/main.js"
+                    ]
+                }
+            ]
+        },
+        
+        "hippo-theme": {
+            "prefix": "../dist",
+            "items": [
+                {
+                    "component": "js",
+                    "file": [
+                        "main.js"
+                    ]
+                }
+            ]
+        },
+
+        "hippo-theme-example": {
+            "items": [
+                {
+                    "component": "../example",
+                    "file": [
+                        "hippo-theme-example.js"
+                    ]
+                }
+            ]
+        }
+    },
+
+    "application": "hippo.theme.example"
+}
