@@ -62,12 +62,11 @@
         },
         
         "hippo-theme": {
-            "prefix": "dist",
             "items": [
                 {
-                    "component": "js",
+                    "component": "components/hippo-theme",
                     "file": [
-                        "main.js"
+                        "dist/js/main.js"
                     ]
                 }
             ]
