@@ -107,6 +107,43 @@
          */
         .controller('PanelCtrl', ['$scope', function ($scope) {
             $scope.title = 'Panel title';
+        }])
+
+        /**
+         * @ngdoc object
+         * @name hippo.theme.example:TreeCtrl
+         *
+         * @description
+         * Controller for the Tree example.
+         */
+        .controller('TreeCtrl', ['$scope', function ($scope) {
+            $scope.treeItems = [
+                {
+                    text: 'Item A',
+                    children: [{
+                        text: 'Item A.1'
+                    }, {
+                        text: 'Item A.2',
+                        children: [{
+                            text: 'Item A.2.1'
+                        }, {
+                            text: 'Item A.2.2'
+                        }, {
+                            text: 'Item A.2.3'
+                        }]
+                    }, {
+                        text: 'Item A.3'
+                    }]
+                }, {
+                    text: 'Item B'
+                }, {
+                    text: 'Item C'
+                }
+            ];
+
+            $scope.setSelected = function (itemId) {
+                console.log('New selected item id: ', itemId);
+            };
         }]);
 
 })();
