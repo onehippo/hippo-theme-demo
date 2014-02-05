@@ -2,8 +2,6 @@
     "use strict";
 
     angular.module('hippo.theme', ['hippo.plugins']);
-
-    console.log('test');
     
 })();
 (function() {
