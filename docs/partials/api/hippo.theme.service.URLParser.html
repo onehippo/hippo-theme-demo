@@ -1,0 +1,34 @@
+<h1><code ng:non-bindable="">URLParser</code>
+<div><span class="hint">service in module <code ng:non-bindable="">hippo.theme</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="hippo-theme-service-page hippo-theme-service-urlparser-page"><p>Whenever the current state changes, the URLParser service will parse the new URL and provide an array containing each part,</p>
+<p>The URL is divided by forward slashes, so /page/subpage/detail will result in an array containing &#39;page&#39;, &#39;subpage&#39; and &#39;detail&#39;.</p>
+<p>Modified version of the <a href="https://github.com/angular-app/angular-app/blob/master/client/src/common/services/breadcrumbs.js">Angular App breadcrumb service</a></p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_getall">getAll()</h3>
+<div class="getall"><div class="hippo-theme-getall-page"><p>Get all the URL parts</p>
+</div><h5 id="methods_getall_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="hippo-theme-getall-page"><p>List of URL parts</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getallwithoutlast">getAllWithoutLast()</h3>
+<div class="getallwithoutlast"><div class="hippo-theme-getallwithoutlast-page"><p>Get all the URL parts without the last part. This can be useful when the last part is an id that you don&#39;t want to use.</p>
+</div><h5 id="methods_getallwithoutlast_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="hippo-theme-getallwithoutlast-page"><p>List of URL parts, without the last part</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getfirst">getFirst()</h3>
+<div class="getfirst"><div class="hippo-theme-getfirst-page"><p>Get the first part of the URL</p>
+</div><h5 id="methods_getfirst_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="hippo-theme-getfirst-page"><p>The first part of the URL</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getparent">getParent()</h3>
+<div class="getparent"><div class="hippo-theme-getparent-page"><p>Get the parent / previous state of the current view</p>
+</div><h5 id="methods_getparent_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="hippo-theme-getparent-page"><p>The state name for the parent / previous view</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>
