@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "hippo.theme",
       "shortDescription": "Tree component for the Hippo Theme. It uses jsTree to render the tree.",
-      "keywords": "api component data directive evaluate function hippo jstree node onselect render selected theme tree"
+      "keywords": "api component data directive evaluate function hippo jstree moved node onmove onselect render selected theme tree"
     },
     {
       "section": "api",
