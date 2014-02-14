@@ -4515,17 +4515,22 @@
 							else {
 								o = rel > h / 2 ? ['i', 'a', 'b'] : ['i', 'b', 'a'];
 							}
+              var pTop = $(ref).css('padding-top').slice(-2);
+              var pLeft = $(ref).css('padding-left').slice(-2);
+              //console.log('Padding top: ', pTop);
+              //console.log('Padding left: ', pLeft);
+
 							$.each(o, function (j, v) {
 								switch(v) {
 									case 'b':
-										l = off.left - 6;
-										t = off.top - 5;
+										l = off.left - 6 + pLeft;
+										t = off.top - 5 + pTop;
 										p = ins.get_parent(ref);
 										i = ref.parent().index();
 										break;
 									case 'i':
-										l = off.left - 2;
-										t = off.top - 5 + h / 2 + 1;
+										l = (off.left - 2) + 10 + pLeft;
+										t = (off.top - 5 + h / 2 + 1) + 10 + pTop;
 										p = ref.parent();
 										i = 0;
 										break;
