@@ -63,8 +63,8 @@ NG_DOCS={
       "shortName": "tree",
       "type": "directive",
       "moduleName": "hippo.theme",
-      "shortDescription": "Tree component for the Hippo Theme. It uses jsTree to render the tree.",
-      "keywords": "api component data directive evaluate function hippo jstree moved node onmove onselect render selected theme tree"
+      "shortDescription": "Tree component for the Hippo Theme based on NestedSortable.",
+      "keywords": "api arguments based call callback callbacks component create describe directive explicitly hippo internally item items list names node object property selected theme title tree"
     },
     {
       "section": "api",

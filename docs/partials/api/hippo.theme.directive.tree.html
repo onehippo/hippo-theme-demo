@@ -4,17 +4,16 @@
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
-<div class="description"><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>Tree component for the Hippo Theme. It uses <a href="http://www.jstree.com/">jsTree</a> to render the tree.</p>
+<div class="description"><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>Tree component for the Hippo Theme based on <a href="https://github.com/JimLiu/Angular-NestedSortable">NestedSortable</a>.</p>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY tree
-     data="{object}"
-     [on-select="{string}"]
-     [on-move="{string}"]&gt;
+     items="{array}"
+     the="{callbacks}"&gt;
    ...
 &lt;/ANY&gt;</pre>
-<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>data</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>The data to use for the Tree.</p>
-</div></td></tr><tr><td>onSelect <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>The function to evaluate when a new node in the Tree is selected.</p>
-</div></td></tr><tr><td>onMove <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>The function to evaluate when a node in the Tree is moved.</p>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>items</td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>The items to use for the Tree. Each item is an object with <code>title</code> (String) and <code>items</code> (Array) property.</p>
+</div></td></tr><tr><td>The</td><td><a href="" class="label type-hint type-hint-callbacks">callbacks</a></td><td><div class="hippo-theme-directive-page hippo-theme-directive-tree-page"><p>callbacks to call when a new node in the Tree is selected (TODO: describe callback names
+or list them explicitly as arguments and create the callbacks object internally)</p>
 </div></td></tr></tbody></table></div>
 </div>

@@ -44,6 +44,11 @@
         #icons .row {
             overflow: hidden;
         }
+
+        /* Components */
+        #tree-component h4 {
+            margin-top: 20px;
+        }
     </style>
 
     <!-- IE Detector -->
@@ -324,7 +329,7 @@
             </div>
         </div>
 
-        <div id="angularjs-compontents">
+        <div id="angularjs-components">
           <div class="row">
             <div class="col-lg-12">
               <h2>AngularJS components</h2>
@@ -355,26 +360,38 @@
             <div class="col-lg-12">
               <div class="panel panel-info">
                 <div class="panel-heading">Tree</div>
-                <div ng-controller="TreeCtrl">
-                  <div hippo.theme.tree data="treeItems" on-select="setSelected(itemId)" on-move="nodeMoved(node)"></div>
+                <div ng-controller="TreeCtrl" id="tree-component">
+                  <div hippo.theme.tree items="treeItems" callbacks="callbacks">{{ item.title }}</div>
                   <br>
-                  <pre>&lt;div hippo.theme.tree
-  data="treeItems"
-  on-select="setSelected(itemId)"
-  on-move="nodeMoved(node)"&gt;
-&lt;/div&gt;</pre>
+                  <pre ng-non-bindable>&lt;div hippo.theme.tree items="treeItems" callbacks="callbacks"&gt;
+    {{ item.title }}
+&lt;/div&gt;
+</pre>
 <p>
-<strong>Note:</strong> example tree data
-<pre>$scope.treeItems = [{
-  text: 'First item'
+<h4>Example tree data</h4>
+<pre>$scope.treeItems = [
+{
+    id: 1,
+    title: 'Item 1',
+    items: [
+        {
+            id: 11,
+            title: 'Item 1.1'
+        }
+    ]
 }, {
-  text: 'Second item',
-  children: [{
-    text: 'Nested item'
-  }, {
-    text: 'Another Nested item'
-  }]
+    id: 2,
+    title: 'Item 2',
+    items: []
 }];</pre>
+<h4>Available callbacks</h4>
+<pre>$scope.callbacks = {
+    accept: function(data, sourceItemScope, targetScope) {},
+    orderChanged: function(scope, sourceItem, sourceIndex, destIndex) {},
+    itemRemoved: function(scope, sourceItem, sourceIndex) {},
+    itemAdded: function(scope, sourceItem, destIndex) {},
+    itemMoved: function(sourceScope, sourceItem, sourceIndex, destScope, destIndex) {}
+};</pre>
 </p>
                 </div>
               </div>
@@ -939,6 +956,7 @@ ng-repeat="item in items"&gt;
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         <div class="row">
