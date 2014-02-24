@@ -6,7 +6,7 @@
     <title>Hippo theme - example</title>
     
     <!-- Include the theme stylesheet -->
-    <link rel="stylesheet" href="components/hippo-theme/dist/css/main.min.css">
+    <link rel="stylesheet" href="components/hippo-theme/dist/css/main.css">
 
     <!-- Styling for the Components Overview only -->
     <style type="text/css">
@@ -361,7 +361,7 @@
               <div class="panel panel-info">
                 <div class="panel-heading">Tree</div>
                 <div ng-controller="TreeCtrl" id="tree-component">
-                  <div hippo.theme.tree items="treeItems" callbacks="callbacks">{{ item.title }}</div>
+                  <div hippo.theme.tree items="treeItems" callbacks="callbacks" class="hippo-tree">{{ item.title }}</div>
                   <br>
                   <pre ng-non-bindable>&lt;div hippo.theme.tree items="treeItems" callbacks="callbacks"&gt;
     {{ item.title }}

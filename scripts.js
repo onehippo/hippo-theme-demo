@@ -122,7 +122,8 @@
                     items: [
                         {
                             id: 'item-a1',
-                            title: 'Item A.1'
+                            title: 'Item A.1',
+                            items: []
                         },
                         {
                             id: 'item-a2',
@@ -130,31 +131,42 @@
                             items: [
                                 {
                                     id: 'item-2-1',
-                                    title: 'Item A.2.1'
+                                    title: 'Item A.2.1',
+                                    items: []
                                 },
                                 {
                                     id: 'item-2-2',
-                                    title: 'Item A.2.2'
+                                    title: 'Item A.2.2',
+                                    items: []
                                 },
                                 {
                                     id: 'item-2-3',
-                                    title: 'Item A.2.3'
+                                    title: 'Item A.2.3',
+                                    items: []
                                 }
                             ]
                         },
                         {
                             id: 'item-a3',
-                            title: 'Item A.3'
+                            title: 'Item A.3',
+                            items: []
                         }
                     ]
                 },
                 {
                     id: 'item-b',
-                    title: 'Item B'
+                    title: 'Item B',
+                    items: []
                 },
                 {
                     id: 'item-c',
-                    title: 'Item C'
+                    title: 'Item C',
+                    items: [
+                        {
+                            id: 'item-c1',
+                            title: 'Item C.1'
+                        }
+                    ]
                 }
             ];
 
@@ -165,6 +177,7 @@
                     $log.info("parent data: ", targetScope.parentItemScope() ? targetScope.parentItemScope().itemData() : "null");
                     return true;
                 },
+
                 orderChanged: function(scope, sourceItem, sourceIndex, destIndex) {
                     var info = "Item [" + sourceItem.title + "] changed order from " + sourceIndex + " to " + destIndex;
                     $log.info(info);
