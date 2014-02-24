@@ -7934,8 +7934,8 @@ div[hippo\.theme\.map] {
 .nestedSortable-placeholder.active > .nestedSortable-handle:hover {
   background: #f4764c;
 }
-.nestedSortable-item.active a,
-.nestedSortable-placeholder.active a {
+.nestedSortable-item.active > .nestedSortable-handle a,
+.nestedSortable-placeholder.active > .nestedSortable-handle a {
   color: #ffffff;
 }
 .nestedSortable-handle {
