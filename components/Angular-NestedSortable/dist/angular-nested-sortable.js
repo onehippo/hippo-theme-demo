@@ -1,5 +1,5 @@
 /**
- * @license Angular NestedSortable v1.2.4
+ * @license Angular NestedSortable v1.2.5
  * (c) 2010-2014. https://github.com/JimLiu/Angular-NestedSortable
  * License: MIT
  */
@@ -270,7 +270,7 @@
   angular.module('ui.nestedSortable')
 
     .directive('uiNestedSortable', [ 'nestedSortableConfig', '$window',
-      function(nestedSortableConfig, $window) {
+      function(nestedSortableConfig) {
         return {
           require: ['ngModel', '?^uiNestedSortableItem'],
           restrict: 'A',
@@ -319,6 +319,10 @@
             };
 
             callbacks.itemMoved = function(sourceScope, sourceItem, sourceIndex, destScope, destIndex) {
+
+            };
+
+            callbacks.itemClicked = function(sourceItem) {
 
             };
 
@@ -385,9 +389,13 @@
                 return;
               }
 
+              var sourceItem = angular.element(e.target).scope().itemData();
+              scope.callbacks.itemClicked(sourceItem);
+
               var target = angular.element(e.target);
               var nodrag = function (targetElm) {
-                return (typeof targetElm.attr('nodrag')) != "undefined";
+                return (typeof targetElm.attr('nodrag')) != "undefined"
+                        || (typeof targetElm.attr('data-nodrag')) != "undefined";
               };
               while (target && target[0] && target[0] != element) {
                 if (nodrag(target)) {
@@ -395,7 +403,7 @@
                 }
                 target = target.parent();
               }
-                  
+
               var moveObj = e;
               if (hasTouch) {
                 if (e.targetTouches !== undefined) {
@@ -501,7 +509,7 @@
                 });
 
                 $helper.positionMoved(e, pos, firstMoving);
-                
+
                 if (firstMoving) {
                   firstMoving = false;
                   return;
@@ -573,7 +581,7 @@
                 if (targetItem) {
                   targetItemData = targetItem.itemData();
                 }
-                  
+
                 currentAccept = targetItem.accept(scope);
 
                 // move vertical
@@ -641,8 +649,7 @@
 
                   if (sameParent) {
                     scope.callbacks.orderChanged(scope.sortableElement.scope(), source, sourceIndex, destIndex);
-                  }
-                  else {
+                  } else {
                     scope.callbacks.itemRemoved(scope.sortableElement.scope(), source, sourceIndex);
                     targetScope.callbacks.itemAdded(targetScope, source, destIndex);
                     scope.callbacks.itemMoved(scope.sortableElement.scope(), source, sourceIndex, targetScope, destIndex);
