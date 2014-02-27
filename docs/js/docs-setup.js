@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "hippo.theme",
       "shortDescription": "Tree component for the Hippo Theme based on NestedSortable.",
-      "keywords": "api arguments based call callback callbacks component create describe directive explicitly hippo internally item items list marked names node object property selected selecteditemid theme title tree"
+      "keywords": "api based callbacks component demo directive github hippo io item items list marked object property selected selecteditemid theme title tree"
     },
     {
       "section": "api",
