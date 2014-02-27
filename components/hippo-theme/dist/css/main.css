@@ -7910,6 +7910,7 @@ div[hippo\.theme\.map] {
   margin: 0;
   padding: 0;
   list-style: none;
+  z-index: 1;
 }
 .nestedSortable-list .nestedSortable-list {
   padding-left: 30px;
@@ -7928,7 +7929,8 @@ div[hippo\.theme\.map] {
   background: #f4764c;
   border-color: #f4764c;
   color: #ffffff;
-  margin-bottom: 1px;
+  z-index: 2;
+  position: relative;
 }
 .nestedSortable-item.active > .nestedSortable-handle:hover,
 .nestedSortable-placeholder.active > .nestedSortable-handle:hover {
@@ -7956,7 +7958,7 @@ div[hippo\.theme\.map] {
   background: #f5f5f5;
 }
 .nestedSortable-placeholder {
-  margin: 0 0 1px 0;
+  margin: 0 0 -2px 0;
   padding: 0;
   min-height: 30px;
   background: #fcf8e3;
@@ -7969,5 +7971,11 @@ div[hippo\.theme\.map] {
   position: absolute;
   pointer-events: none;
   z-index: 999;
-  opacity: .8;
+  zoom: 1;
+  filter: alpha(opacity=90);
+  opacity: 0.9;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1px 0 0 0;
 }
