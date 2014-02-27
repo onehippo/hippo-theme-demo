@@ -1,7 +1,7 @@
 Hippo Theme Demo
 ================
 
-1. Clone the [Hippo Theme Repository]()
+1. Clone the [Hippo Theme Repository](https://github.com/onehippo/hippo-theme)
 2. Inside the Hippo Theme project, create the demo website
 3. Copy the contents of it's `demo` directory
 4. Paste the contents in this repository
