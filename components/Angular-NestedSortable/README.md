@@ -72,6 +72,7 @@ HTML View or Templates
 - Adding `ui-nested-sortable-handle` to mark which element do you want to handle the drage action
 - All `ui-nested-sortable`, `ng-model`, `ui-nested-sortable-item` and `ui-nested-sortable-handle` are necessary. And they can be nested.
 - If you add a `data-nodrag` attribute to an element, the element won't response for the drag action.
+- If you changed the datasource bound, sometimes you have to call [`$scope.$apply()`](http://docs.angularjs.org/api/ng/type/$rootScope.Scope#$apply) to refresh the view, otherwise you will get an error `Cannot read property '0' of undefined` ([Issue #32](https://github.com/JimLiu/Angular-NestedSortable/issues/32)).
 
 
 ### Callbacks
@@ -82,20 +83,23 @@ The Callbacks can be passed through the directive.
 myAppModule.controller('MyController', function($scope) {
   $scope.items = [...];
   $scope.sortableOptions = {
-    accept = function(modelData, sourceItemScope, targetScope) {
+    accept: function(modelData, sourceItemScope, targetScope) {
       return true;
-    };
-    itemRemoved = function(scope, modelData, sourceIndex) {
+    },
+    itemRemoved: function(scope, modelData, sourceIndex) {
 
-    };
-    itemAdded = function(scope, modelData, destIndex) {
+    },
+    itemAdded: function(scope, modelData, destIndex) {
 
-    };
-    itemMoved = function(sourceScope, modelData, sourceIndex, destScope, destIndex) {
+    },
+    itemMoved: function(sourceScope, modelData, sourceIndex, destScope, destIndex) {
 
-    };
-    orderChanged = function(scope, modelData, sourceIndex, destIndex) {
+    },
+    orderChanged: function(scope, modelData, sourceIndex, destIndex) {
 
+    },
+    itemClicked: function(modelData) {
+      
     };
   };
 });
@@ -115,7 +119,8 @@ myAppModule.controller('MyController', function($scope) {
 - `itemRemoved` callback: When a sub-item is removed.
 - `itemAdded` callback: When a sub-item is added.
 - `itemMoved` callback: When a sub-item is moved from a node to another node.
-- `orderChanged` callback: It's only fired if the item drag & drop under the same parent node.
+- `orderChanged` callback: Is only fired if the dragged item gets dropped at the same parent node.
+- `itemClicked` callback: When an item is clicked.
 
 #### Parameters
 - `scope`, `sourceScope` or `sourceItemScope` is the `scope` object of the dragging item

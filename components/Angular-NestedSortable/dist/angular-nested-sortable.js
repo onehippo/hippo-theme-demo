@@ -1,5 +1,5 @@
 /**
- * @license Angular NestedSortable v1.2.5
+ * @license Angular NestedSortable v1.2.7
  * (c) 2010-2014. https://github.com/JimLiu/Angular-NestedSortable
  * License: MIT
  */
@@ -365,7 +365,8 @@
             var config = {};
             var placeElm, hiddenPlaceElm, targetScope, sourceIndex,
                 destIndex, sameParent, pos, dragElm, dragItemElm,
-                dragItem, firstMoving, targetItem, targetBefore;
+                dragItem, firstMoving, targetItem, targetBefore,
+                clickedElm, clickedElmDragged;
 
             angular.extend(config, nestedSortableConfig);
             scope.initHandle(element);
@@ -388,9 +389,13 @@
                 // disable right click
                 return;
               }
-
-              var sourceItem = angular.element(e.target).scope().itemData();
-              scope.callbacks.itemClicked(sourceItem);
+              
+              clickedElm = angular.element(e.target);
+              clickedElmDragged = false;
+              var sourceItem = clickedElm.scope().itemData();
+              clickedElm.bind('mouseup', function(){
+                scope.callbacks.itemClicked(sourceItem, clickedElmDragged);
+              });
 
               var target = angular.element(e.target);
               var nodrag = function (targetElm) {
@@ -491,7 +496,9 @@
             var dragMoveEvent = function(e) {
               var currentAccept, prev, childAccept;
               var moveObj = e;
-
+              
+              clickedElmDragged = true;
+              
               if (hasTouch) {
                 if (e.touches !== undefined) {
                   moveObj = e.touches.item(0);
@@ -565,6 +572,11 @@
                 if (angular.isFunction(dragElm.hide)) {
                   dragElm.hide();
                 }
+
+                // when using elementFromPoint() inside an iframe, you have to call
+                // elementFromPoint() twice to make sure IE8 returns the correct value
+                document.elementFromPoint(targetX, targetY);
+
                 var targetElm = angular.element(document.elementFromPoint(targetX, targetY));
                 if (angular.isFunction(dragElm.show)) {
                   dragElm.show();
@@ -680,6 +692,7 @@
     ]);
 
 })();
+
 (function () {
   'use strict';
 

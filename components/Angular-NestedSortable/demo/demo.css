@@ -43,7 +43,6 @@ pre {
 .nestedSortable-handle {
     cursor: move;
     display: block;
-    /*min-height: 38px;*/
     margin: 5px 0;
     padding: 8px 12px;
     background: #f8faff;
