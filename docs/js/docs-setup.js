@@ -14,6 +14,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "hippo.theme.directive:confirmationDialog",
+      "shortName": "confirmationDialog",
+      "type": "directive",
+      "moduleName": "hippo.theme",
+      "shortDescription": "Renders a confirmation dialog that can show any message and provides a confirm- and cancel button.",
+      "keywords": "animate api assigning button call cancel cancellabel changed class classes clicked confirm confirm- confirmation confirmlabel css css-classes desired dialog directive easily element function hide hippo label link message performcancel performconfirmation properties property renders represented s-invisible s-visible set theme top won"
+    },
+    {
+      "section": "api",
       "id": "hippo.theme.directive:divider",
       "shortName": "divider",
       "type": "directive",
