@@ -7861,8 +7861,8 @@ td.visible-print {
   content: ">\00a0";
 }
 .list-group-item {
-  padding-top: 18px;
-  padding-bottom: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .panel {
   box-shadow: none;
