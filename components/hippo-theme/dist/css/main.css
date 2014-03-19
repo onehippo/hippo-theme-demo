@@ -7989,7 +7989,7 @@ div[hippo\.theme\.map] {
   padding: 30px 20px 16px 20px;
   border-color: #cac6af;
   background-color: #f5f5f5;
-  background-color: rgba(245, 245, 245, 0.92);
+  background-color: rgba(245, 245, 245, 0.94);
   -webkit-transition: top .5s;
   -moz-transition: top .5s;
   -ms-transition: top .5s;
@@ -7999,7 +7999,7 @@ div[hippo\.theme\.map] {
   /* --- States --- */
 }
 .confirmation-dialog p {
-  color: #2d2d2d;
+  color: #2c2c2d;
 }
 .confirmation-dialog a {
   font-weight: normal;
