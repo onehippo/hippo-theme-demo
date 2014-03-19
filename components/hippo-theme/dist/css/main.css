@@ -6685,7 +6685,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-footer {
   padding: 10px 15px;
-  background-color: #ebebeb;
+  background-color: #f4f4f4;
   border-top: 1px solid #afafaf;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -7946,7 +7946,7 @@ div[hippo\.theme\.map] {
 .nestedSortable-item.active > .nestedSortable-handle,
 .nestedSortable-placeholder.active > .nestedSortable-handle {
   background: #fedc89;
-  border-color: #afafaf;
+  border-color: #ccd1d8;
   z-index: 2;
   position: relative;
 }
@@ -7961,7 +7961,7 @@ div[hippo\.theme\.map] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background: #ffffff;
-  border: 1px solid #afafaf;
+  border: 1px solid #ccd1d8;
   line-height: 1.5em;
 }
 .nestedSortable-handle:hover {
