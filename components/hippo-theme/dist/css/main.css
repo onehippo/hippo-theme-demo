@@ -2402,6 +2402,11 @@ address {
   font-style: normal;
   line-height: 1.428571429;
 }
+h1,
+.h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 code,
 kbd,
 pre,
