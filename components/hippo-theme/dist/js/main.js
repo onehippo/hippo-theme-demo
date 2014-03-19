@@ -654,7 +654,7 @@
                                 '<i class="fa fa-{{ confirmIcon }}" data-ng-show="confirmIcon"></i> {{ confirmLabel }}' +
                             '</button>' +
                             '&nbsp;&nbsp;' +
-                            '<button class="btn btn-link" data-ng-click="performCancel()">' +
+                            '<button class="btn btn-default" data-ng-click="performCancel()">' +
                                 '{{ cancelLabel }}' +
                             '</button>' +
                         '</p>' +
