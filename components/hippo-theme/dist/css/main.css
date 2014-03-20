@@ -7942,6 +7942,8 @@ div[hippo\.theme\.map] {
   padding: 0;
   min-height: 20px;
   line-height: 20px;
+  margin: 4px;
+  margin-right: 0;
 }
 .nestedSortable-item.active > .nestedSortable-handle,
 .nestedSortable-placeholder.active > .nestedSortable-handle {
@@ -7963,12 +7965,13 @@ div[hippo\.theme\.map] {
   background: #ffffff;
   border: 1px solid #ccd1d8;
   line-height: 1.5em;
+  border-radius: 4px;
 }
 .nestedSortable-handle:hover {
   background: #f5f5f5;
 }
 .nestedSortable-placeholder {
-  margin: 0 0 -2px 0;
+  margin: 4px 0 -2px 4px;
   padding: 0;
   min-height: 30px;
   background: #fcf8e3;
