@@ -426,6 +426,7 @@
                 link: function(scope, element) {
                     scope.$watch('options', function() {
                         element.trigger('chosen:updated');
+                        element.trigger('chosen:updated.chosen');
                     });
 
                     element.chosen({
