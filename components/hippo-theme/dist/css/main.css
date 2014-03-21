@@ -7886,8 +7886,12 @@ div[hippo\.theme\.chart] {
 .chosen-container .search-choice-close {
   cursor: pointer;
 }
+.chosen-container .chosen-results {
+  color: #2c2c2d;
+}
 .chosen-container-single .chosen-single {
   background-image: none;
+  color: #2c2c2d;
 }
 .chosen-container-single .chosen-default {
   color: #ccd1d8;
