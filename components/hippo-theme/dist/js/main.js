@@ -423,6 +423,10 @@
         function() {
             return {
                 restrict: 'A',
+                scope: {
+                    placeholder: '@',
+                    noResultsText: '@'
+                },
                 link: function(scope, element) {
                     scope.$watch('options', function() {
                         element.trigger('chosen:updated');
@@ -430,7 +434,10 @@
                     });
 
                     element.chosen({
-                        width: "100%"
+                        width: "100%",
+                        no_results_text: scope.noResultsText,
+                        single_text: scope.placeholder,
+                        multiple_text: scope.placeholder
                     });
                 }
             };
