@@ -423,11 +423,7 @@
         function() {
             return {
                 restrict: 'A',
-                scope: {
-                    placeholder: '@',
-                    noResultsText: '@'
-                },
-                link: function(scope, element) {
+                link: function(scope, element, attrs) {
                     scope.$watch('options', function() {
                         element.trigger('chosen:updated');
                         element.trigger('chosen:updated.chosen');
@@ -435,9 +431,9 @@
 
                     element.chosen({
                         width: "100%",
-                        no_results_text: scope.noResultsText,
-                        single_text: scope.placeholder,
-                        multiple_text: scope.placeholder
+                        no_results_text: attrs.noResultsText,
+                        single_text: attrs.placeholder,
+                        multiple_text: attrs.placeholder
                     });
                 }
             };
