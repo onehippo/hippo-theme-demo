@@ -1,21 +1,30 @@
-// Copyright 2009-2012 by contributors, MIT License
+/*!
+ * https://github.com/es-shims/es5-shim
+ * @license es5-shim Copyright 2009-2014 by contributors, MIT License
+ * see https://github.com/es-shims/es5-shim/blob/master/LICENSE
+ */
+
 // vim: ts=4 sts=4 sw=4 expandtab
 
 //Add semicolon to prevent IIFE from being passed as argument to concated code.
 ;
-// Module systems magic dance
-(function (definition) {
-    // RequireJS
-    if (typeof define == "function") {
-        define(definition);
-    // YUI3
-    } else if (typeof YUI == "function") {
-        YUI.add("es5", definition);
-    // CommonJS and <script>
+
+// UMD (Universal Module Definition)
+// see https://github.com/umdjs/umd/blob/master/returnExports.js
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(factory);
+    } else if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory();
     } else {
-        definition();
-    }
-})(function () {
+        // Browser globals (root is window)
+        root.returnExports = factory();
+  }
+}(this, function () {
 
 /**
  * Brings an environment as close to ECMAScript 5 compliance
@@ -25,20 +34,6 @@
  * ES5 Spec: http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
  * Required reading: http://javascriptweblog.wordpress.com/2011/12/05/extending-javascript-natives/
  */
-
-// ES-5 15.1.2.2
-if (parseInt('08') !== 8) {
-    parseInt = (function (origParseInt) {
-        var hexRegex = /^0[xX]/;
-        return function parseIntES5(str, radix) {
-            str = String(str).trim();
-            if (!+radix) {
-                radix = hexRegex.test(str) ? 16 : 10;
-            }
-            return origParseInt(str, radix);
-        };
-    }(parseInt));
-}
 
 //
 // Function
@@ -348,19 +343,24 @@ if (!Array.isArray) {
 // http://es5.github.com/#x15.4.4.18
 // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/forEach
 
+
 // Check failure of by-index access of string characters (IE < 9)
 // and failure of `0 in boxedString` (Rhino)
-var boxedString = Object("a"),
-    splitString = boxedString[0] != "a" || !(0 in boxedString);
-// Check node 0.6.21 bug where third parameter is not boxed
-var boxedForEach = true;
-if (Array.prototype.forEach) {
-    Array.prototype.forEach.call("foo", function(item, i, obj) {
-        if (typeof obj !== 'object') boxedForEach = false;
-    });
-}
+var boxedString = Object("a");
+var splitString = boxedString[0] != "a" || !(0 in boxedString);
 
-if (!Array.prototype.forEach || !boxedForEach) {
+var properlyBoxesContext = function properlyBoxed(method) {
+    // Check node 0.6.21 bug where third parameter is not boxed
+    var properlyBoxes = true;
+    if (method) {
+        method.call('foo', function (item, index, context) {
+            if (typeof context !== 'object') { properlyBoxes = false; }
+        });
+    }
+    return !!method && properlyBoxes;
+};
+
+if (!Array.prototype.forEach || !properlyBoxesContext(Array.prototype.forEach)) {
     Array.prototype.forEach = function forEach(fun /*, thisp*/) {
         var object = toObject(this),
             self = splitString && _toString(this) == "[object String]" ?
@@ -389,7 +389,7 @@ if (!Array.prototype.forEach || !boxedForEach) {
 // ES5 15.4.4.19
 // http://es5.github.com/#x15.4.4.19
 // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
-if (!Array.prototype.map) {
+if (!Array.prototype.map || !properlyBoxesContext(Array.prototype.map)) {
     Array.prototype.map = function map(fun /*, thisp*/) {
         var object = toObject(this),
             self = splitString && _toString(this) == "[object String]" ?
@@ -415,7 +415,7 @@ if (!Array.prototype.map) {
 // ES5 15.4.4.20
 // http://es5.github.com/#x15.4.4.20
 // https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter
-if (!Array.prototype.filter) {
+if (!Array.prototype.filter || !properlyBoxesContext(Array.prototype.filter)) {
     Array.prototype.filter = function filter(fun /*, thisp */) {
         var object = toObject(this),
             self = splitString && _toString(this) == "[object String]" ?
@@ -446,7 +446,7 @@ if (!Array.prototype.filter) {
 // ES5 15.4.4.16
 // http://es5.github.com/#x15.4.4.16
 // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
-if (!Array.prototype.every) {
+if (!Array.prototype.every || !properlyBoxesContext(Array.prototype.every)) {
     Array.prototype.every = function every(fun /*, thisp */) {
         var object = toObject(this),
             self = splitString && _toString(this) == "[object String]" ?
@@ -472,7 +472,7 @@ if (!Array.prototype.every) {
 // ES5 15.4.4.17
 // http://es5.github.com/#x15.4.4.17
 // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
-if (!Array.prototype.some) {
+if (!Array.prototype.some || !properlyBoxesContext(Array.prototype.some)) {
     Array.prototype.some = function some(fun /*, thisp */) {
         var object = toObject(this),
             self = splitString && _toString(this) == "[object String]" ?
@@ -664,6 +664,7 @@ if (!Array.prototype.lastIndexOf || ([0, 1].lastIndexOf(0, -3) != -1)) {
 if (!Object.keys) {
     // http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation
     var hasDontEnumBug = true,
+        hasProtoEnumBug = (function () {}).propertyIsEnumerable('prototype'),
         dontEnums = [
             "toString",
             "toLocaleString",
@@ -680,25 +681,27 @@ if (!Object.keys) {
     }
 
     Object.keys = function keys(object) {
+        var isFunction = _toString(object) === '[object Function]',
+            isObject = object !== null && typeof object === 'object';
 
-        if (
-            (typeof object != "object" && typeof object != "function") ||
-            object === null
-        ) {
+        if (!isObject && !isFunction) {
             throw new TypeError("Object.keys called on a non-object");
         }
 
-        var keys = [];
+        var keys = [],
+            skipProto = hasProtoEnumBug && isFunction;
         for (var name in object) {
-            if (owns(object, name)) {
+            if (!(skipProto && name === 'prototype') && owns(object, name)) {
                 keys.push(name);
             }
         }
 
         if (hasDontEnumBug) {
-            for (var i = 0, ii = dontEnumsLength; i < ii; i++) {
+            var ctor = object.constructor,
+                skipConstructor = ctor && ctor.prototype === object;
+            for (var i = 0; i < dontEnumsLength; i++) {
                 var dontEnum = dontEnums[i];
-                if (owns(object, dontEnum)) {
+                if (!(skipConstructor && dontEnum === 'constructor') && owns(object, dontEnum)) {
                     keys.push(dontEnum);
                 }
             }
@@ -826,7 +829,7 @@ if (!dateToJSONIsSupported) {
 // http://es5.github.com/#x15.9.4.2
 // based on work shared by Daniel Friesen (dantman)
 // http://gist.github.com/303249
-if (!Date.parse || "Date.parse is buggy") {
+if (!Date.parse || isNaN(Date.parse("2000-01-01T00:00:00.000Z"))) {
     // XXX global assignment won't work in embeddings that use
     // an alternate object for the context.
     Date = (function(NativeDate) {
@@ -1276,7 +1279,7 @@ if ("".substr && "0b".substr(-1) !== "b") {
 }
 
 // ES5 15.5.4.20
-// http://es5.github.com/#x15.5.4.20
+// whitespace from: http://es5.github.io/#x15.5.4.20
 var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
     "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" +
     "\u2029\uFEFF";
@@ -1294,6 +1297,20 @@ if (!String.prototype.trim || ws.trim()) {
             .replace(trimBeginRegexp, "")
             .replace(trimEndRegexp, "");
     };
+}
+
+// ES-5 15.1.2.2
+if (parseInt(ws + '08') !== 8 || parseInt(ws + '0x16') !== 22) {
+    parseInt = (function (origParseInt) {
+        var hexRegex = /^0[xX]/;
+        return function parseIntES5(str, radix) {
+            str = String(str).trim();
+            if (!+radix) {
+                radix = hexRegex.test(str) ? 16 : 10;
+            }
+            return origParseInt(str, radix);
+        };
+    }(parseInt));
 }
 
 //
@@ -1357,4 +1374,4 @@ var toObject = function (o) {
     return Object(o);
 };
 
-});
+}));
