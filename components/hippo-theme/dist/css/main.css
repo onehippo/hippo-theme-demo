@@ -8205,6 +8205,7 @@ div[hippo\.theme\.map] {
   height: 20px;
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 1px;
 }
 .angular-ui-tree-handle .btn-xs .fa {
   margin-top: -1px;
@@ -8212,7 +8213,9 @@ div[hippo\.theme\.map] {
 }
 .angular-ui-tree-handle .spacer {
   display: inline-block;
-  width: 2px;
+  width: 18px;
+  color: #afafaf;
+  padding-left: 4px;
 }
 .angular-ui-tree-placeholder {
   margin: 4px 0 -2px 4px;
