@@ -1,6 +1,6 @@
 {
   "name": "Angular-NestedSortable",
-  "version": "2.0.11",
+  "version": "2.1.5",
   "dependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.8.0",
@@ -13,6 +13,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-uglify": "~0.3.2",
+    "grunt-closure-compiler": "~0.0.21",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-open": "~0.2.3",
     "grunt-contrib-connect": "~0.6.0",

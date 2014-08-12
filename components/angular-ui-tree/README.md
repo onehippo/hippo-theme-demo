@@ -42,7 +42,7 @@ Watch the Tree component in action on the [demo page](http://jimliu.github.io/an
 ### Load CSS
 Load the css file: `angular-ui-tree.min.css` in your application:
 ```html
-<link rel="stylesheet" href="bower_components/angular-ui-tree/angular-ui-tree.min.css">
+<link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
 ```
 
 
@@ -50,7 +50,7 @@ Load the css file: `angular-ui-tree.min.css` in your application:
 Load the script file: `angular-ui-tree.js` or `angular-ui-tree.min.js` in your application:
 
 ```html
-<script type="text/javascript" src="bower_components/angular-ui-tree/angular-ui-tree.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
 ```
 
 ### Code
@@ -144,6 +144,11 @@ If you write your own [$callbacks.accept](#accept) method, you have to check `da
 ##### data-drag-delay
 Number of milliseconds a click must be held to start a drag. (default 0)
 
+##### data-empty-place-holder-enabled
+If a tree is empty, there will be an empty place hoder which is used to drop node from other trees by default.
+- `true` (default): display an empty place holder if the tree is empty
+- `false`: do not display an empty place hoder
+
 ##### Example 
 - turn on/off drag and drop.
 - Limit depth to 5
@@ -195,6 +200,17 @@ If the nodes accept the current dragging node.
 - `true` Allow it to drop.
 - `false` Not allow.
 
+##### <a name="beforeDrag"></a>beforeDrag(sourceNodeScope)
+Check if the current selected node can be dragged.
+
+**Parameters:**
+- `sourceNodeScope`: The scope of source node which is selected.
+
+**Return**
+If current node is draggable.
+- `true` Allow it to drag.
+- `false` Not allow.
+
 ##### <a name="dropped"></a>dropped(event)
 If a node moves it's position after dropped, the `nodeDropped` callback will be called.
 
@@ -209,7 +225,7 @@ If a node moves it's position after dropped, the `nodeDropped` callback will be 
     + `index`: The position you dropped in.
   * `elements`: The dragging relative elements.
     + `placeholder`: The placeholder element.
-    + `drag`: The dragging element.
+    + `dragging`: The dragging element.
   * `pos`: Position object.
 
 ##### <a name="dragStart"></a>dragStart(event)
@@ -225,6 +241,12 @@ Same as [Parameters](#eventParam) of dropped.
 
 ##### dragStop(event)
 The `dragStop` function is called when the user stop dragging the node.
+
+**Parameters:**
+Same as [Parameters](#eventParam) of dropped.
+
+##### beforeDrop(event)
+The `beforeDrop` function is called before the dragging node is dropped.
 
 **Parameters:**
 Same as [Parameters](#eventParam) of dropped.
@@ -301,6 +323,9 @@ Example: turn off drag.
   <li ng-repeat="node in nodes" ui-tree-node data-nodrag>{{node.title}}</li>
 </ol>
 ```
+
+##### data-collapsed
+Collapse the node.
 
 #### Properties of scope
 ##### $element (type: AngularElement)

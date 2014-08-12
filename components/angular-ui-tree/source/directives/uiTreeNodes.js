@@ -32,21 +32,24 @@
           if (ngModel) {
             ngModel.$render = function() {
               if (!ngModel.$modelValue || !angular.isArray(ngModel.$modelValue)) {
-                ngModel.$setViewValue([]);
+                scope.$modelValue = [];
               }
               scope.$modelValue = ngModel.$modelValue;
             };
           }
 
-          attrs.$observe('maxDepth', function(val) {
-            var md = scope.$eval(val);
-            if((typeof md) == "number") {
-              scope.maxDepth = md;
+          scope.$watch(attrs.maxDepth, function(val) {
+            if((typeof val) == "number") {
+              scope.maxDepth = val;
             }
           });
 
           attrs.$observe('nodrop', function(val) {
             scope.nodrop = ((typeof val) != "undefined");
+          });
+
+          attrs.$observe('horizontal', function(val) {
+            scope.horizontal = ((typeof val) != "undefined");
           });
 
         }

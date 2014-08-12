@@ -17,7 +17,7 @@
     "use strict";
 
     angular.module('hippo.theme.example', ['hippo.theme'])
-    
+
         /**
          * @ngdoc object
          * @name hippo.theme.example:SelectBoxCtrl
@@ -147,7 +147,7 @@
                         },
                         {
                             id: 'item-a2',
-                            title: 'Item A.2',
+                            title: 'Item A.2 has a very long name that probably will not fit on a single row when tree becomes very small',
                             items: [
                                 {
                                     id: 'item-2-1',
@@ -185,7 +185,8 @@
                     items: [
                         {
                             id: 'item-c1',
-                            title: 'Item C.1'
+                            title: 'Item C.1',
+                            items: []
                         }
                     ]
                 }
@@ -243,6 +244,26 @@
                 $log.info('Cancel button clicked');
                 $scope.confirmation.show = false;
             };
-        }]);
+        }])
 
+        .controller('FeatureCtrl', ['$scope', function ($scope) {
+            $scope.showDescription = false;
+            $scope.showChanges = false;
+
+            $scope.toggleDescription = function () {
+                $scope.showDescription = !$scope.showDescription;
+            };
+
+            $scope.toggleChanges = function () {
+                $scope.showChanges = !$scope.showChanges;
+            };
+        }])
+
+        .controller('ErrorCtrl', ['$scope', function ($scope) {
+            $scope.testMessage = 'hi there';
+            $scope.showErrors = false;
+            $scope.toggleErrors = function () {
+                $scope.showErrors = !$scope.showErrors;
+            };
+        }]);
 })();
