@@ -18,6 +18,7 @@
 <head>
     <!-- Meta -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hippo theme - example</title>
 
     <!-- Include the theme stylesheet -->
@@ -30,91 +31,66 @@
     <script src="components/fastclick/lib/fastclick.js"></script>
 </head>
 
-<body id="container">
-    <div class="log" ng-controller="ErrorCtrl">
-        <div class="alert alert-default" >
-            <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
+<body id="container" ng-class="{'log-visible': showLog}" ng-controller="LogCtrl">
+    <div class="log-top alert alert-info" ng-class="{'alert-open': showErrors}" ng-controller="ErrorCtrl" ng-click="toggleErrors($event)">
+        <button type="button" class="close" data-dismiss="alert" ng-click="hideLog()">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
 
-            <p>20: <span class="fa fa-exclamation"></span> <a href="#" ng-click="toggleErrors()">Interesting error message <span class="fa" ng-class="{'fa-chevron-right': !showErrors, 'fa-chevron-down': showErrors}"></span></a></p>
+        <p>15:55:46 - <span class="fa fa-fw fa-exclamation fa-danger"></span> Interesting error message <span class="fa" ng-class="{'fa-chevron-right': !showErrors, 'fa-chevron-down': showErrors}"></span></p>
 
-            <div class="log-messages" ng-show="showErrors">
-                <p class="bg-primary">Log message: Lorem Ipsum</p>
-                <p class="bg-primary">Log message: Lorem Ipsum</p>
-                <p class="bg-primary">Log message: Lorem Ipsum</p>
-                <p class="bg-success">Log message: Lorem Ipsum</p>
-                <p class="bg-success">Log message: Lorem Ipsum</p>
-                <p class="bg-success">Log message: Lorem Ipsum</p>
-                <p class="bg-info">Log message: Lorem Ipsum</p>
-                <p class="bg-info">Log message: Lorem Ipsum</p>
-                <p class="bg-info">Log message: Lorem Ipsum</p>
-                <p class="bg-warning">Log message: Lorem Ipsum</p>
-                <p class="bg-warning">Log message: Lorem Ipsum</p>
-                <p class="bg-warning">Log message: Lorem Ipsum</p>
-                <p class="bg-danger">Log message: Lorem Ipsum</p>
-                <p class="bg-danger">Log message: Lorem Ipsum</p>
-                <p class="bg-danger">Log message: Lorem Ipsum</p>
-            </div>
+        <div class="log-messages ng-hide" ng-show="showErrors">
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation fa-danger"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-check-square-o fa-success"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-flag fa-warning"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+            <p>15:55:46 - <span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
         </div>
     </div>
-    <div class="hippo-navbar navbar navbar-default">
+    <div class="hippo-navbar navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="badge notification-badge">18</span>
+                <span class="badge badge-primary notification-badge">18</span>
                 <a class="navbar-brand" href="#">Hippo Theme</a>
-                <p class="navbar-text pull-left">
+                <p class="navbar-text navbar-title">
                     a work in progress
                 </p>
                 <div class="navbar-text navbar-icons">
                     <a href="#" class="navbar-link" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
-                        <span class="fa fa-refresh"></span> Rebuild now!
+                        <span class="fa fa-refresh"></span> <span class="hidden-xs">Rebuild now!</span>
                     </a>
                     <a href="#" class="navbar-link">
-                        <span class="fa-stack">
-                            <span class="fa fa-circle fa-stack-2x fa-white"></span>
-                            <span class="fa fa-bell-o fa-stack-1x fa-danger"></span>
-                        </span>
+                        <span class="fa fa-bell-o fa-danger"></span>
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="navbar-collapse sidebar-navbar-collapse collapse" ng-controller="NavCtrl">
-        <ul class="nav navbar-nav">
-            <li><a ng-click="scrollTo('introduction')"><span class="fa fa-dashboard fa-2x fa-fw fa-middle"></span> Introduction</a></li>
-            <li><a ng-click="scrollTo('css-components')"><span class="fa fa-wrench fa-2x fa-fw fa-middle"></span> CSS Components</a></li>
-            <li><a ng-click="scrollTo('angular-components')"><span class="fa fa-cubes fa-2x fa-fw fa-middle"></span> AngularJS Components</a></li>
-            <li><a href="#"><span class="fa fa-exclamation fa-fw fa-middle"></span> Notification label <span class="label label-primary">18</span></a></li>
-        </ul>
-    </div>
-
-    <div class="modal fade" id="myModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                     <span class="fa-stack fa-4x">
-                        <span class="fa fa-circle fa-stack-2x fa-primary"></span>
-                        <span class="fa fa-spinner fa-spin fa-stack-1x fa-white"></span>
-                    </span>
-                    <h2>Rebuilding...</h2>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+            <div class="navbar-collapse collapse" ng-controller="NavCtrl">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="" ng-click="scrollTo('introduction')"><span class="fa fa-dashboard fa-2x fa-fw fa-middle"></span> Introduction</a></li>
+                    <li><a href="" ng-click="scrollTo('css-components')"><span class="fa fa-wrench fa-2x fa-fw fa-middle"></span> CSS Components</a></li>
+                    <li><a href="" ng-click="scrollTo('angular-components')"><span class="fa fa-cubes fa-2x fa-fw fa-middle"></span> AngularJS Components</a></li>
+                    <li><a href=""><span class="fa fa-exclamation fa-fw fa-middle"></span> Notification label <span class="badge badge-primary">18</span></a></li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid components-container">
+    <div class="container-fluid container-has-hippo-navbar">
         <div class="row">
             <div class="col-lg-12">
                 <a class="anchor" id="introduction"></a>
@@ -344,51 +320,58 @@
 
                                     <div class="feature-description-long" ng-show="showDescription">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid aspernatur assumenda at, atque autem commodi consequatur, ex fugit id iure modi non provident quae rem repudiandae sed tempora veniam! Ab earum, illum iure labore officia possimus quas quis tempora? A amet animi aut beatae commodi ducimus eius error esse est et facere harum hic laboriosam laudantium possimus, rerum ut. Architecto blanditiis consequatur culpa dignissimos dolor enim ex excepturi itaque maxime nam natus officiis omnis, quis quod similique temporibus voluptatem! Ad consequuntur corporis culpa maxime nam odio saepe similique velit! Accusantium, asperiores assumenda commodi cum dicta dolorem et incidunt inventore iure magni minus natus non recusandae reprehenderit voluptatibus? A aliquid beatae culpa cum eveniet incidunt, ipsam magni pariatur placeat quasi? Adipisci commodi debitis exercitationem, fuga fugit laborum minima non praesentium quae ut. A aliquid beatae dolorum.</p>
-                                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                            <!-- Indicators -->
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNTU1O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
-                                                </li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="1">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNDQ0O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==" alt="">
-                                                </li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="2">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
-                                                </li>
-                                                <li data-target="#carousel-example-generic" data-slide-to="2">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
-                                                </li>
-                                            </ol>
 
-                                            <!-- Wrapper for slides -->
-                                            <div class="carousel-inner">
-                                                <div class="item active">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNTU1O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
-                                                    <div class="carousel-caption">
-                                                        This item has a caption
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                                    <!-- Indicators -->
+                                                    <ol class="carousel-indicators">
+                                                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNTU1O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+                                                        </li>
+                                                        <li data-target="#carousel-example-generic" data-slide-to="1">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNDQ0O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==" alt="">
+                                                        </li>
+                                                        <li data-target="#carousel-example-generic" data-slide-to="2">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+                                                        </li>
+                                                        <li data-target="#carousel-example-generic" data-slide-to="2">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+                                                        </li>
+                                                    </ol>
+
+                                                    <!-- Wrapper for slides -->
+                                                    <div class="carousel-inner">
+                                                        <div class="item active">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNTU1O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+                                                            <div class="carousel-caption">
+                                                                This item has a caption
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNDQ0O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==" alt="">
+                                                        </div>
+                                                        <div class="item">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+                                                        </div>
+                                                        <div class="item">
+                                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="item">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNDQ0O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==" alt="">
-                                                </div>
-                                                <div class="item">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
-                                                </div>
-                                                <div class="item">
-                                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojMzMzO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+" alt="">
+
+
+                                                    <!-- Controls -->
+                                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                        <span class="glyphicon glyphicon-chevron-left"></span>
+                                                    </a>
+                                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                        <span class="glyphicon glyphicon-chevron-right"></span>
+                                                    </a>
                                                 </div>
                                             </div>
-
-
-                                            <!-- Controls -->
-                                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                            </a>
-                                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                            </a>
                                         </div>
+
+                                        <a href="#" data-ng-click="toggleDescription()">Read less...</a>
                                     </div>
                                 </div>
                                 <div class="feature-changes">
@@ -400,21 +383,18 @@
                                     </div>
 
                                     <div class="log-messages" ng-show="showChanges">
-                                        <p class="bg-primary">Log message: Lorem Ipsum</p>
-                                        <p class="bg-primary">Log message: Lorem Ipsum</p>
-                                        <p class="bg-primary">Log message: Lorem Ipsum</p>
-                                        <p class="bg-success">Log message: Lorem Ipsum</p>
-                                        <p class="bg-success">Log message: Lorem Ipsum</p>
-                                        <p class="bg-success">Log message: Lorem Ipsum</p>
-                                        <p class="bg-info">Log message: Lorem Ipsum</p>
-                                        <p class="bg-info">Log message: Lorem Ipsum</p>
-                                        <p class="bg-info">Log message: Lorem Ipsum</p>
-                                        <p class="bg-warning">Log message: Lorem Ipsum</p>
-                                        <p class="bg-warning">Log message: Lorem Ipsum</p>
-                                        <p class="bg-warning">Log message: Lorem Ipsum</p>
-                                        <p class="bg-danger">Log message: Lorem Ipsum</p>
-                                        <p class="bg-danger">Log message: Lorem Ipsum</p>
-                                        <p class="bg-danger">Log message: Lorem Ipsum</p>
+                                        <p><span class="fa fa-fw fa-exclamation fa-danger"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-check-square-o fa-success"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-flag fa-warning"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
+                                        <p><span class="fa fa-fw fa-exclamation"></span> Interesting error message</p>
                                     </div>
                                 </div>
                             </div>
@@ -1320,6 +1300,23 @@ ng-repeat="item in items"&gt;
                 <p class="text-center" id="footer">
                     <em>That's all folks!</em>
                 </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                     <span class="fa-stack fa-4x">
+                        <span class="fa fa-circle fa-stack-2x fa-primary"></span>
+                        <span class="fa fa-spinner fa-spin fa-stack-1x fa-white"></span>
+                    </span>
+                    <h2>Rebuilding...</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
