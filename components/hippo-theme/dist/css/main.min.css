@@ -54,7 +54,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */.feature-changes{margin-top:10px;border-top:1px solid #e3e3e3;padding-top:20px}.feature-changes-controls:after,.feature-changes-controls:before{content:" ";display:table}.feature-changes-controls:after{clear:both}.feature-changes .log-messages{padding:5px 0}.feature-block .well{margin-bottom:0}/*!
+ */.feature-block{margin-bottom:20px}.feature-block:last-child{margin-bottom:0}.feature-changes{margin-top:10px;border-top:1px solid #e3e3e3;padding-top:20px}.feature-changes-controls:after,.feature-changes-controls:before{content:" ";display:table}.feature-changes-controls:after{clear:both}.feature-changes .log-messages{padding:5px 0}.feature-block .well{margin-bottom:0}/*!
  * Copyright 2014 Hippo B.V. (http://www.onehippo.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
