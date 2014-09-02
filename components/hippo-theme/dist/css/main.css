@@ -6276,7 +6276,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
  */
 body {
   position: relative;
-  padding-top: 50px;
 }
 html,
 body {
@@ -6287,6 +6286,7 @@ body {
   height: 100%;
   overflow: auto;
   padding-top: 15px;
+  margin-top: 50px;
 }
 .anchor {
   display: block;
@@ -7537,7 +7537,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .log-visible .hippo-navbar .navbar-collapse.collapse {
-    top: 102px;
+    top: 52px;
   }
 }
 @media (min-width: 768px) {
@@ -8074,6 +8074,9 @@ button.close {
 }
 .carousel-inner > .item > img {
   width: 100%;
+}
+.carousel img {
+  border: 1px solid #2c2c2d;
 }
 .carousel-control.left {
   background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, 0.3) 0%), color-stop(rgba(0, 0, 0, 0.0001) 100%));
