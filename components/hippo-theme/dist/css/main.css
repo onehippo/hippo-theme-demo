@@ -7537,7 +7537,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .log-visible .hippo-navbar .navbar-collapse.collapse {
-    top: 52px;
+    top: 102px;
   }
 }
 @media (min-width: 768px) {
