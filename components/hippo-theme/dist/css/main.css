@@ -2390,6 +2390,29 @@ hr {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+/*
+ * Copyright 2014 Hippo B.V. (http://www.onehippo.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  overflow: hidden;
+}
 h1,
 h2,
 h3,
@@ -6274,25 +6297,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-body {
-  position: relative;
-}
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
 .container-has-hippo-navbar {
-  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: auto;
   padding-top: 15px;
   margin-top: 50px;
-}
-.anchor {
-  display: block;
-  visibility: hidden;
-  position: relative;
-  top: -50px;
 }
 .navbar-icons {
   float: right;
@@ -6347,13 +6360,13 @@ body {
   }
 }
 @media (min-width: 768px) {
-  .hippo-navbar ~ .container-has-hippo-navbar {
+  .container-has-hippo-navbar {
     margin-left: 200px;
   }
   .navbar-header {
     width: 100%;
   }
-  .hippo-navbar .navbar-collapse.collapse {
+  .hippo-navbar .collapse {
     position: fixed;
     top: 50px;
     left: 0;
@@ -6363,15 +6376,12 @@ body {
     padding: 0;
     background: #f8f8f8;
   }
-  .hippo-navbar .navbar-collapse.collapse ul,
-  .hippo-navbar .navbar-collapse.collapse li {
+  .hippo-navbar .collapse ul,
+  .hippo-navbar .collapse li {
     float: none;
   }
   .hippo-navbar .notification-badge {
     display: none;
-  }
-  .anchor {
-    top: 0;
   }
 }
 .breadcrumb {
@@ -7534,6 +7544,9 @@ button.close {
 }
 .log-visible .hippo-navbar {
   top: 52px;
+}
+.log-visible .container-has-hippo-navbar {
+  margin-top: 102px;
 }
 @media (min-width: 768px) {
   .log-visible .hippo-navbar .navbar-collapse.collapse {
