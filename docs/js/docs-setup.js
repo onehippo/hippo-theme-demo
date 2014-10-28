@@ -5,6 +5,15 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
+      "id": "hippo.theme.directive:blurOnClick",
+      "shortName": "blurOnClick",
+      "type": "directive",
+      "moduleName": "hippo.theme",
+      "shortDescription": "Blurs an element when it is clicked.",
+      "keywords": "api blurs clicked directive element hippo theme"
+    },
+    {
+      "section": "api",
       "id": "hippo.theme.directive:chart",
       "shortName": "chart",
       "type": "directive",
